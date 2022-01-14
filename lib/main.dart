@@ -102,6 +102,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text("Usage Permission"),
               ),
+              TextButton(
+                onPressed: () {
+                  platform.invokeMethod("grantNotificationAccess");
+                },
+                child: const Text("Notification Permission"),
+              ),
             ],
           ),
         ),

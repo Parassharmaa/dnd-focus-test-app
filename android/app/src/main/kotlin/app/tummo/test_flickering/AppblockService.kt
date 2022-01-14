@@ -74,6 +74,7 @@ class AppblockService : Service() {
             .build()
         startForeground(1, notification)
 
+        toast(this, "App Blocker Service Started")
 
         return START_NOT_STICKY
     }

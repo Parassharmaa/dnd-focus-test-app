@@ -61,6 +61,12 @@ class MainActivity: FlutterActivity() {
                 "grantUsagePermission" -> {
                     grantUsagePermission()
                 }
+                "isNotificationPermission" -> {
+                    isNotificationPermission()
+                }
+                "grantNotificationAccess" -> {
+                    grantNotificationAccess()
+                }
                 else -> {
                     result.notImplemented()
                 }
@@ -77,6 +83,19 @@ class MainActivity: FlutterActivity() {
 
             context.startActivity(intent)
     }
+
+
+private fun isNotificationPermission(): Boolean {
+    val enabledNotificationListeners = Settings.Secure.getString(contentResolver, "enabled_notification_listeners")
+    val packageName = this.packageName
+    return !(enabledNotificationListeners == null || !enabledNotificationListeners.contains(packageName))
+}
+
+private fun grantNotificationAccess() {
+    val intent = Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    context.startActivity(intent);
+}
 
     private fun setInteruptionFilter(value: Int) {
         val mNotificationManager =
